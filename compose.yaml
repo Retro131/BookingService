@@ -1,7 +1,94 @@
 ﻿services:
-  bookingservice:
-    image: bookingservice
+  booking-keycloak:
+    image: quay.io/keycloak/keycloak:26.4.4
+    container_name: booking-keycloak
+    ports:
+      - "8080:8080"
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=http://localhost:5202/auth-kc
+      - KC_HOSTNAME_STRICT=false
+      - KC_PROXY_HEADERS=xforwarded
+      - KC_HEALTH_ENABLED=true
+    command: [ "start-dev", "--import-realm" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "bash -c '</dev/tcp/localhost/8080'" ]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    volumes:
+      - db-keycloak:/opt/keycloak/data
+      - ./keycloak/import:/opt/keycloak/data/import
+
+  booking-service:
+    image: booking-service
+    container_name: booking-service
+    ports:
+      - "5202:8080"
     build:
       context: .
       dockerfile: BookingService/Dockerfile
+    environment:
+      ConnectionStrings__BookingDb: "Host=booking-db;Port=5432;Database=bookingDb;Username=postgres;Password=1"
+      ConnectionStrings__Redis: "booking-redis:6379"
+      RUN_MIGRATIONS: "true"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+      booking-db:
+        condition: service_healthy
+      booking-service.redis:
+        condition: service_healthy
+        
+  api-gateway:
+    image: api-gateway
+    container_name: api-gateway
+    ports:
+      - "5202:5202"
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:5202
+    depends_on:
+      booking-keycloak:
+        condition: service_healthy
 
+  rabbit:
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  booking-db:
+    image: postgres:latest
+    container_name: booking-db
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bookingDb
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-booking:/var/lib/postgresql/\
+    
+  booking-service.redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  db-keycloak:
+  db-booking:

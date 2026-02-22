@@ -1,0 +1,59 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  auth-service:
+    build:
+      context: "D:\\Rider Projects\\BookingService"
+      dockerfile: "AuthService/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/AuthService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "auth-service:dev"
+    ports: []
+    volumes:
+    - "D:\\Rider Projects\\BookingService\\AuthService:/app:rw"
+    - "D:\\Rider Projects\\BookingService:/src:rw"
+    - "C:\\Users\\geoor\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  booking-service:
+    build:
+      context: "D:\\Rider Projects\\BookingService"
+      dockerfile: "BookingService/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/BookingService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "booking-service:dev"
+    ports: []
+    volumes:
+    - "D:\\Rider Projects\\BookingService\\BookingService:/app:rw"
+    - "D:\\Rider Projects\\BookingService:/src:rw"
+    - "C:\\Users\\geoor\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  identity-service:
+    build:
+      context: "D:\\Rider Projects\\BookingService"
+      dockerfile: "IdentityService/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/IdentityService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "identity-service:dev"
+    ports: []
+    volumes:
+    - "D:\\Rider Projects\\BookingService\\IdentityService:/app:rw"
+    - "D:\\Rider Projects\\BookingService:/src:rw"
+    - "C:\\Users\\geoor\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
