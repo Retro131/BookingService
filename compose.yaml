@@ -26,7 +26,7 @@
     image: booking-service
     container_name: booking-service
     ports:
-      - "5202:8080"
+      - "5203:8080"
     build:
       context: .
       dockerfile: BookingService/Dockerfile
@@ -39,9 +39,7 @@
         condition: service_healthy
       booking-db:
         condition: service_healthy
-      booking-service.redis:
-        condition: service_healthy
-        
+
   api-gateway:
     image: api-gateway
     container_name: api-gateway
