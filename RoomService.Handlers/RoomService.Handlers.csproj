@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RoomService.Core\RoomService.Core.csproj" />
+      <ProjectReference Include="..\RoomService.Domain\RoomService.Domain.csproj" />
+      <ProjectReference Include="..\RoomService.Infrastructure\RoomService.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
