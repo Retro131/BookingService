@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.5",
           "Microsoft.EntityFrameworkCore.Abstractions": "10.0.5",
+          "RoomService.Core": "1.0.0",
           "Vogen": "8.0.5"
         },
         "runtime": {
@@ -133,6 +134,14 @@
             "fileVersion": "8.0.5.0"
           }
         }
+      },
+      "RoomService.Core/1.0.0": {
+        "runtime": {
+          "RoomService.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -218,6 +227,11 @@
       "sha512": "sha512-hUGafk0LpUn3ooZNOOczByhVSGqBaI96bCn0DkreSd2bwHGrMfdRoCqNrB4w0/y5bufyYaABqQ8wWBPgx5QdNw==",
       "path": "vogen/8.0.5",
       "hashPath": "vogen.8.0.5.nupkg.sha512"
+    },
+    "RoomService.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -12,4 +12,8 @@
       <PackageReference Include="Vogen" Version="8.0.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RoomService.Core\RoomService.Core.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomService.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomService.Handlers", "RoomService.Handlers\RoomService.Handlers.csproj", "{965036AC-974E-4FDB-B3F1-DC40AC582B7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomService.Test.Integration", "RoomService.Test.Integration\RoomService.Test.Integration.csproj", "{475E2989-6614-45F5-BA24-2A3C0D0898A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{965036AC-974E-4FDB-B3F1-DC40AC582B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{965036AC-974E-4FDB-B3F1-DC40AC582B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{965036AC-974E-4FDB-B3F1-DC40AC582B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475E2989-6614-45F5-BA24-2A3C0D0898A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475E2989-6614-45F5-BA24-2A3C0D0898A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475E2989-6614-45F5-BA24-2A3C0D0898A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475E2989-6614-45F5-BA24-2A3C0D0898A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC0F0FF1-DE7B-42F2-B8E1-FA3FCAD30032} = {30AA0B28-5B01-4644-A9A4-42AB2ED4CEFC}
@@ -68,5 +74,6 @@ Global
 		{75AF3A46-AD9B-469C-83E5-EB9CB09F3309} = {30AA0B28-5B01-4644-A9A4-42AB2ED4CEFC}
 		{88E37D28-78BE-4343-BA2E-998338DD0B78} = {30AA0B28-5B01-4644-A9A4-42AB2ED4CEFC}
 		{965036AC-974E-4FDB-B3F1-DC40AC582B7E} = {30AA0B28-5B01-4644-A9A4-42AB2ED4CEFC}
+		{475E2989-6614-45F5-BA24-2A3C0D0898A6} = {30AA0B28-5B01-4644-A9A4-42AB2ED4CEFC}
 	EndGlobalSection
 EndGlobal

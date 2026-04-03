@@ -195,6 +195,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.5",
           "Microsoft.EntityFrameworkCore.Abstractions": "10.0.5",
+          "RoomService.Core": "1.0.0",
           "Vogen": "8.0.5"
         },
         "runtime": {

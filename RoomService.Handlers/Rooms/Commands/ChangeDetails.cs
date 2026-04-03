@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RoomService.Core.Abstractions.Commands;
 using RoomService.Domain.Entities;
+using RoomService.Domain.Exceptions;
 using RoomService.Domain.ValueObjects;
 using RoomService.Infrastructure.Ef;
 
@@ -49,11 +50,11 @@ public class ChangeDetails
         {
             using var scope = logger.BeginScope("ChangeRoomDetails");
             
-            var room = await dbContext.Rooms.FindAsync([command.RoomId.Value], cancellationToken);
+            var room = await dbContext.Rooms.FindAsync([command.RoomId], cancellationToken);
 
             if (room is null)
             {
-                //TODO сделать обработку ошибки не найдено
+                throw new NotFoundException(ErrorMessages.RoomNotFound);
             }
             
             room!.ChangeDetails(command.Name, command.Description, command.Capacity);

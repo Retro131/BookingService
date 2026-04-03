@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RoomService.Core.Abstractions.Commands;
 using RoomService.Domain.Entities;
+using RoomService.Domain.Exceptions;
 using RoomService.Domain.ValueObjects;
 using RoomService.Infrastructure.Ef;
 
@@ -33,15 +35,20 @@ public class UpdateEquipment
         {
             using var scope = logger.BeginScope("ChangeRoomDetails");
 
-            var room = dbContext.Rooms.FirstOrDefault(r => r.Id == command.RoomId);
-
-            if (room == null)
+            var room = await dbContext.Rooms
+                .Include(r => r.Equipments)
+                .FirstOrDefaultAsync(r => r.Id == command.RoomId, cancellationToken);
+            if (room is null)
             {
-                //TODO
+                throw new NotFoundException(ErrorMessages.RoomNotFound);
             }
 
-            room!.UpdateEquipment(command.EquipmentIds);
-            
+            var equipments = await dbContext.Equipments
+                .Where(e => command.EquipmentIds.Contains(e.Id))
+                .ToListAsync(cancellationToken);
+
+            room.UpdateEquipment(equipments);            
+
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return new Response();

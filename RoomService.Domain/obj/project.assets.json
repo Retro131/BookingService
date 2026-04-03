@@ -215,6 +215,16 @@
         "build": {
           "buildTransitive/Vogen.targets": {}
         }
+      },
+      "RoomService.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/RoomService.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RoomService.Core.dll": {}
+        }
       }
     }
   },
@@ -592,12 +602,18 @@
         "vogen.8.0.5.nupkg.sha512",
         "vogen.nuspec"
       ]
+    },
+    "RoomService.Core/1.0.0": {
+      "type": "project",
+      "path": "../RoomService.Core/RoomService.Core.csproj",
+      "msbuildProject": "../RoomService.Core/RoomService.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "Microsoft.EntityFrameworkCore >= 10.0.5",
       "Microsoft.EntityFrameworkCore.Abstractions >= 10.0.5",
+      "RoomService.Core >= 1.0.0",
       "Vogen >= 8.0.5"
     ]
   },
@@ -625,7 +641,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Rider Projects\\BookingService\\RoomService.Core\\RoomService.Core.csproj": {
+              "projectPath": "D:\\Rider Projects\\BookingService\\RoomService.Core\\RoomService.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

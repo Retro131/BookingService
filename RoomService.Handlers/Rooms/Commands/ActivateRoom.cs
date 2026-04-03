@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Logging;
 using RoomService.Core.Abstractions.Commands;
+using RoomService.Domain.Exceptions;
 using RoomService.Domain.ValueObjects;
 using RoomService.Infrastructure.Ef;
 
@@ -20,11 +21,11 @@ public class ActivateRoom
         {
             using var scope = logger.BeginScope("ActivateRoom");
             
-            var room = await dbContext.Rooms.FindAsync([command.RoomId.Value], cancellationToken);
+            var room = await dbContext.Rooms.FindAsync([command.RoomId], cancellationToken);
 
             if (room is null)
             {
-                //TODO handle exception
+                throw new NotFoundException(ErrorMessages.RoomNotFound);
             }
             
             room!.Activate();

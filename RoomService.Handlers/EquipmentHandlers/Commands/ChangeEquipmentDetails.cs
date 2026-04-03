@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Logging;
 using RoomService.Core.Abstractions.Commands;
+using RoomService.Domain.Exceptions;
 using RoomService.Domain.ValueObjects;
 using RoomService.Infrastructure.Ef;
 
@@ -44,7 +45,7 @@ public class ChangeEquipmentDetails
 
             if (equipment is null)
             {
-                //TODO сделать обработку ошибки не найдено
+                throw new NotFoundException(ErrorMessages.EquipmentNotFound);
             }
             
             equipment!.ChangeDetails(command.Name, command.Description);

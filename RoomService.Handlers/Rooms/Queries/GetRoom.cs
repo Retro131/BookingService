@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RoomService.Core.Abstractions.Queries;
 using RoomService.Domain.Entities;
+using RoomService.Domain.Exceptions;
 using RoomService.Domain.ValueObjects;
 using RoomService.Infrastructure.Ef;
 
@@ -47,7 +48,7 @@ public class GetRoom
 
             if (response is null)
             {
-                //TODO
+                throw new NotFoundException(ErrorMessages.RoomNotFound);
             }
 
             return new Response(response!);

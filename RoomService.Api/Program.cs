@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using RoomService.Domain.ValueObjects;
 using RoomService.Endpoints;
+using RoomService.ExceptionHandler;
 using RoomService.Extensions;
 using RoomService.Handlers.Rooms.Queries;
 using RoomService.Infrastructure.Ef;
@@ -31,6 +32,9 @@ builder.Services.AddDbContext<RoomDbContext>(o =>
 {
     o.UseNpgsql(builder.Configuration.GetConnectionString("RoomDb"));
 });
+
+builder.Services.AddExceptionHandler<NotFoundHandler>();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 

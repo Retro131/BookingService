@@ -11,3 +11,6 @@ D:\Rider Projects\BookingService\RoomService.Domain\obj\Debug\net10.0\RoomServic
 D:\Rider Projects\BookingService\RoomService.Domain\obj\Debug\net10.0\refint\RoomService.Domain.dll
 D:\Rider Projects\BookingService\RoomService.Domain\obj\Debug\net10.0\RoomService.Domain.pdb
 D:\Rider Projects\BookingService\RoomService.Domain\obj\Debug\net10.0\ref\RoomService.Domain.dll
+D:\Rider Projects\BookingService\RoomService.Domain\bin\Debug\net10.0\RoomService.Core.dll
+D:\Rider Projects\BookingService\RoomService.Domain\bin\Debug\net10.0\RoomService.Core.pdb
+D:\Rider Projects\BookingService\RoomService.Domain\obj\Debug\net10.0\RoomServ.C58210C0.Up2Date
